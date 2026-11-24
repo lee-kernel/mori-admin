@@ -27,7 +27,7 @@ export interface SettingsConfig {
 const settings: SettingsConfig = {
   // 应用标题
   title: 'Mori Admin',
-  logo: '',
+  logo: '/logo.png',
 
   /** 是否固定 Header */
   fixedHeader: false,

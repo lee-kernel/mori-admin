@@ -333,7 +333,10 @@ function backToCredentials() {
 .brand-copy img {
   width: 2.5rem;
   height: 2.5rem;
+  padding: 3px;
   object-fit: contain;
+  background: var(--ant-color-text-light-solid);
+  border-radius: 10px;
 }
 
 .brand-copy strong {

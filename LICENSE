@@ -1,0 +1,82 @@
+Mori Non-Commercial License
+
+Copyright (c) 2026 lee-kernel. All rights reserved.
+
+================================================================================
+中文说明
+================================================================================
+
+本协议适用于 Mori（mori-admin）项目的全部源代码、文档及相关文件（以下简称“本软件”）。
+使用、复制、修改或分发本软件，即表示您同意遵守以下条款：
+
+1. 授权范围（仅限非商业用途）
+   在严格遵守本协议的前提下，版权方授予您一项非独占、不可转让、免版税的许可，
+   仅限用于以下非商业用途：
+   - 个人学习、技术研究与教学演示；
+   - 个人非营利项目的使用、复制、修改与再分发。
+
+2. 禁止商业用途
+   未经版权方事先书面授权，严禁将本软件（无论是否经过修改，整体或部分）用于任何
+   直接或间接的商业用途，包括但不限于：
+   - 集成、打包或二次开发为商业软件、商业产品或商业服务；
+   - 用于企业、公司或其他营利性组织的内部生产系统或商业运营；
+   - 作为托管服务、SaaS、云服务或外包项目向第三方提供并获取收益；
+   - 销售、出租、转授权本软件或其衍生作品，或将其用于任何商业推广与盈利活动。
+
+3. 保留声明
+   在允许的非商业用途下复制或再分发本软件或其修改版本时，必须在所有副本及重要
+   组成部分中完整保留上述版权声明、本许可协议全文及原作者署名，且不得移除或篡改
+   原始出处标识。
+
+4. 商业授权
+   如需将本软件用于任何商业用途，请通过本仓库（https://github.com/lee-kernel/mori-admin）
+   联系版权方获取正式的商业书面授权。
+
+5. 免责声明
+   本软件按“现状”（AS IS）提供，不附带任何明示或暗示的担保，包括但不限于适销性、
+   特定用途适用性及不侵权担保。在任何情况下，版权方不对因使用或无法使用本软件而
+   引起的任何直接、间接、偶然、特殊或后果性损害承担责任。
+
+================================================================================
+English Version
+================================================================================
+
+This license applies to all source code, documentation, and related files of
+the Mori (mori-admin) project (the "Software"). By using, copying, modifying,
+or distributing the Software, you agree to the following terms:
+
+1. Permitted Use (Non-Commercial Only)
+   Subject to this license, the copyright holder grants you a non-exclusive,
+   non-transferable, royalty-free license to use, copy, modify, and
+   redistribute the Software strictly for non-commercial purposes, including:
+   - Personal learning, academic research, and educational demonstration;
+   - Non-profit personal projects.
+
+2. Commercial Use Prohibited
+   Without prior written authorization from the copyright holder, you may NOT
+   use the Software (in whole or in part, modified or unmodified) for any
+   direct or indirect commercial purpose, including but not limited to:
+   - Integrating, bundling, or building commercial software, products, or services;
+   - Using the Software in internal production systems or commercial operations
+     of any company, enterprise, or for-profit organization;
+   - Offering the Software as a hosted service, SaaS, cloud service, or paid
+     client deliverable;
+   - Selling, renting, sublicensing, or otherwise monetizing the Software or
+     its derivative works.
+
+3. Attribution & Notice Retention
+   Any permitted non-commercial copy or redistribution of the Software or its
+   modifications must retain the above copyright notice, this license text in
+   full, and original authorship attribution.
+
+4. Commercial Licensing
+   For commercial use, please contact the copyright holder via the repository
+   (https://github.com/lee-kernel/mori-admin) to obtain a commercial license.
+
+5. Disclaimer of Warranty
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING
+   FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+   DEALINGS IN THE SOFTWARE.

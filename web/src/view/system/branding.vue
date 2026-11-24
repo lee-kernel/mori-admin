@@ -34,7 +34,7 @@
               保存 Logo
             </a-button>
             <a-button
-              v-if="settings.logo && !form.file"
+              v-if="isCustomLogo && !form.file"
               html-type="button"
               :disabled="loading || saving"
               @click="restoreDefault">
@@ -48,14 +48,18 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, ref, watch } from 'vue'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { App, type UploadProps } from 'ant-design-vue'
 import { PlusOutlined } from '@ant-design/icons-vue'
 import { resetLogo, updateLogo } from '@/api/branding'
 import PageLayout from '@/components/PageLayout/index.vue'
+import defaultSettings from '@/setting'
 import { useSettingsStore } from '@/stores/setting'
 
 const settings = useSettingsStore()
+const isCustomLogo = computed(
+  () => Boolean(settings.logo) && settings.logo !== defaultSettings.logo
+)
 const { message } = App.useApp()
 const loading = ref(true)
 const saving = ref(false)
@@ -133,6 +137,9 @@ async function restoreDefault() {
 .logo-image {
   width: 100%;
   height: 100%;
+  padding: 4px;
   object-fit: contain;
+  background: var(--ant-color-text-light-solid);
+  border-radius: 6px;
 }
 </style>

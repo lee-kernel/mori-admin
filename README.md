@@ -1,13 +1,24 @@
-# Mori
+<p align="center">
+  <img src="web/public/logo.png" alt="Mori Logo" width="96" height="96" />
+</p>
 
-[![Vue 3.5](https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vuedotjs&logoColor=white)](https://vuejs.org/)
-[![Ant Design Vue 4.2](https://img.shields.io/badge/Ant%20Design%20Vue-4.2-1677FF?logo=antdesign&logoColor=white)](https://antdv.com/)
-[![TypeScript 5.9](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite 5.4](https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
-[![Node.js 22](https://img.shields.io/badge/Node.js-22-5FA04E?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![FastAPI 0.115](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![PostgreSQL 18](https://img.shields.io/badge/PostgreSQL-18-4169E1?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+<h1 align="center">Mori</h1>
+
+<p align="center">
+  <strong>简体中文</strong> | <a href="README.en.md">English</a>
+</p>
+
+<p align="center">
+  <a href="https://vuejs.org/"><img src="https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vuedotjs&logoColor=white" alt="Vue 3.5" /></a>
+  <a href="https://antdv.com/"><img src="https://img.shields.io/badge/Ant%20Design%20Vue-4.2-1677FF?logo=antdesign&logoColor=white" alt="Ant Design Vue 4.2" /></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white" alt="TypeScript 5.9" /></a>
+  <a href="https://vite.dev/"><img src="https://img.shields.io/badge/Vite-5.4-646CFF?logo=vite&logoColor=white" alt="Vite 5.4" /></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-22-5FA04E?logo=nodedotjs&logoColor=white" alt="Node.js 22" /></a>
+  <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white" alt="FastAPI 0.115" /></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white" alt="Python 3.12" /></a>
+  <a href="https://www.postgresql.org/"><img src="https://img.shields.io/badge/PostgreSQL-18-4169E1?logo=postgresql&logoColor=white" alt="PostgreSQL 18" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Non--Commercial-red.svg" alt="License: Non-Commercial" /></a>
+</p>
 
 Mori 是一套基于 Vue 3 + Ant Design Vue 的后台前端工程，用来约束 AI Agent 写页面时的布局、组件和样式，避免每次生成都跑偏或临时引入其他 UI 库。仓库里也附带了一套可选的 FastAPI + PostgreSQL 后台（登录、可选 2FA、用户组、动态菜单、操作权限和审计日志）。
 
@@ -76,6 +87,10 @@ npm run dev
 - **后端唯一授权边界与审计**：动态菜单仅控制前端导航展示，所有受保护接口由后端统一校验登录态与用户组操作权限（RBAC）；登录、登录失败、退出及关键管理写操作均记录审计日志，并附带服务端生成的 `X-Trace-Id` 便于链路排查。
 - **参数化 SQL 与启动配置校验**：后端原生 SQL 全量参数化执行，避免注入风险；启动前自动检查 `SECRET_KEY` 强度、生产环境关闭 `DEBUG`、CORS Origin 合法性及 2FA 加密密钥格式，且日志、异常响应与启动报错均不泄露密码、Token 或完整密钥。更多细则见 [后端编码规范](docs/backend.md#五安全与鉴权规范)。
 
-## 开源发布说明
+## 许可证
 
-本项目从 Mori 的管理后台基础模块整理而来。公开发布前，需要确认许可证、权利人信息以及第三方代码和素材声明。
+本项目采用 **非商业使用许可协议**（详见 [LICENSE](LICENSE)）：
+
+- **允许**：个人学习、技术研究、教学演示及非营利个人项目的使用、修改与再分发（须保留原始版权与许可声明）。
+- **禁止**：未经版权方事先书面授权，不得用于任何直接或间接的商业用途（包括商业产品集成、企业内部生产/运营、收费托管/SaaS 服务或外包交付等）。
+- **商业授权**：如需商用，请通过仓库联系版权方获取书面授权。
