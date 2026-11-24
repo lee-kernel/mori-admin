@@ -1,0 +1,18 @@
+$sideBarWidth: 200px;
+$collapsedSideBarWidth: 80px;
+$sidebar-collapse-breakpoint: 992px;
+
+@mixin below-sidebar-breakpoint {
+  @media (max-width: ($sidebar-collapse-breakpoint - 1px)) {
+    @content;
+  }
+}
+
+// CSS Modules 导出供 TypeScript 使用，不属于原生 CSS 选择器与属性。
+/* stylelint-disable selector-pseudo-class-no-unknown, property-no-unknown */
+:export {
+  sideBarWidth: $sideBarWidth;
+  collapsedSideBarWidth: $collapsedSideBarWidth;
+  sidebarCollapseBreakpoint: $sidebar-collapse-breakpoint;
+}
+/* stylelint-enable selector-pseudo-class-no-unknown, property-no-unknown */

@@ -1,0 +1,101 @@
+import type { UserProfile } from '@/api/auth'
+import type { MenuNode } from '@/api/menu'
+
+/**
+ * 纯前端 UI 预览模式（`npm run dev:preview` / `VITE_UI_PREVIEW=true`）使用的本地身份与菜单。
+ * 无需启动 FastAPI 与 PostgreSQL，即可预览所有标准页面范例并执行 `npm run verify:ui`。
+ */
+export const PREVIEW_PROFILE: UserProfile = {
+  id: 0,
+  username: 'preview',
+  display_name: 'UI 预览访客',
+  email: 'preview@mori.local',
+  is_active: true,
+  group_id: 0,
+  group_name: 'UI 规范预览',
+  is_admin: true,
+  menu_ids: [],
+  menu_paths: [
+    '/',
+    '/patterns/workspace',
+    '/patterns/card-grid',
+    '/patterns/detail',
+    '/patterns/drawer-form',
+  ],
+  operation_permission_keys: [],
+}
+
+export const PREVIEW_MENUS: MenuNode[] = [
+  {
+    id: 9000,
+    parent_id: null,
+    name: 'UI 范例库',
+    path: '/',
+    permission_key: 'preview:root',
+    component: 'Layout',
+    icon: 'AppstoreOutlined',
+    redirect: '/patterns/workspace',
+    sort: 1,
+    hidden: false,
+    is_external: false,
+    is_system: false,
+    children: [
+      {
+        id: 9001,
+        parent_id: 9000,
+        name: '工作台概览',
+        path: '/patterns/workspace',
+        permission_key: 'preview:workspace',
+        component: 'view/patterns/workspace.vue',
+        icon: 'DashboardOutlined',
+        redirect: null,
+        sort: 1,
+        hidden: false,
+        is_external: false,
+        is_system: false,
+      },
+      {
+        id: 9002,
+        parent_id: 9000,
+        name: '卡片网格列表',
+        path: '/patterns/card-grid',
+        permission_key: 'preview:card-grid',
+        component: 'view/patterns/cardGrid.vue',
+        icon: 'AppstoreOutlined',
+        redirect: null,
+        sort: 2,
+        hidden: false,
+        is_external: false,
+        is_system: false,
+      },
+      {
+        id: 9003,
+        parent_id: 9000,
+        name: '详情与分区页',
+        path: '/patterns/detail',
+        permission_key: 'preview:detail',
+        component: 'view/patterns/detail.vue',
+        icon: 'FileTextOutlined',
+        redirect: null,
+        sort: 3,
+        hidden: false,
+        is_external: false,
+        is_system: false,
+      },
+      {
+        id: 9004,
+        parent_id: 9000,
+        name: '弹窗抽屉与状态',
+        path: '/patterns/drawer-form',
+        permission_key: 'preview:drawer-form',
+        component: 'view/patterns/drawerForm.vue',
+        icon: 'FormOutlined',
+        redirect: null,
+        sort: 4,
+        hidden: false,
+        is_external: false,
+        is_system: false,
+      },
+    ],
+  },
+]

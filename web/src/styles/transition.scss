@@ -1,0 +1,85 @@
+/* 全局过渡动画工具类，统一消费 theme.scss 中的动效 Token。 */
+
+/* 基础淡入淡出：用于遮罩、独立页面切换、侧栏文字显隐等 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var(--mori-admin-motion-base) var(--mori-admin-ease-standard);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* 路由页面切换（AppMain.vue 使用 name="fade-transform"） */
+.fade-transform-enter-active {
+  transition:
+    opacity var(--mori-admin-motion-base) var(--mori-admin-ease-out),
+    transform var(--mori-admin-motion-base) var(--mori-admin-ease-out);
+}
+
+.fade-transform-leave-active {
+  transition:
+    opacity var(--mori-admin-motion-fast) var(--mori-admin-ease-in),
+    transform var(--mori-admin-motion-fast) var(--mori-admin-ease-in);
+}
+
+.fade-transform-enter-from {
+  opacity: 0;
+  transform: translate3d(0, 6px, 0);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translate3d(0, -4px, 0);
+}
+
+/* 轻微缩放淡入淡出：用于 PageState 三态切换等局部反馈 */
+.fade-scale-enter-active,
+.fade-scale-leave-active {
+  transition:
+    opacity var(--mori-admin-motion-fast) var(--mori-admin-ease-standard),
+    transform var(--mori-admin-motion-fast) var(--mori-admin-ease-standard);
+}
+
+.fade-scale-enter-from,
+.fade-scale-leave-to {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+/* 标签栏条目增删过渡 */
+.tag-fade-enter-active,
+.tag-fade-leave-active {
+  transition:
+    opacity var(--mori-admin-motion-fast) var(--mori-admin-ease-standard),
+    transform var(--mori-admin-motion-fast) var(--mori-admin-ease-standard);
+}
+
+.tag-fade-enter-from,
+.tag-fade-leave-to {
+  opacity: 0;
+  transform: translate3d(-6px, 0, 0) scale(0.96);
+}
+
+.tag-fade-move {
+  transition: transform var(--mori-admin-motion-base) var(--mori-admin-ease-standard);
+}
+
+/* 尊重系统的减少动态效果偏好 */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --mori-admin-motion-fast: 0.01ms;
+    --mori-admin-motion-base: 0.01ms;
+    --mori-admin-motion-slow: 0.01ms;
+  }
+
+  .fade-transform-enter-from,
+  .fade-transform-leave-to,
+  .fade-scale-enter-from,
+  .fade-scale-leave-to,
+  .tag-fade-enter-from,
+  .tag-fade-leave-to {
+    transform: none;
+  }
+}

@@ -1,0 +1,91 @@
+@use './variables.module.scss' as layout;
+
+:root {
+  --mori-admin-viewport-height: 100vh;
+  --mori-admin-safe-top: env(safe-area-inset-top, 0px);
+  --mori-admin-safe-right: env(safe-area-inset-right, 0px);
+  --mori-admin-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --mori-admin-safe-left: env(safe-area-inset-left, 0px);
+  --mori-admin-page-padding: 16px;
+  --mori-admin-page-padding-inline: 24px;
+  --mori-admin-page-padding-inline-compact: 12px;
+  --mori-admin-section-gap: 16px;
+  --mori-admin-shell-gap: 4px;
+  --mori-admin-radius-surface: 12px;
+  --mori-admin-radius-card: var(--ant-border-radius-l-g, var(--ant-border-radius));
+  --mori-admin-shadow-sidebar: 0 8px 28px rgb(0 0 0 / 6%);
+
+  // Ant Design Vue 的 Modal / Drawer 基础层级为 1000，位于侧栏和遮罩之上。
+  --mori-admin-z-sidebar: 999;
+  --mori-admin-z-sidebar-mask: 800;
+
+  // 统一动效时长与缓动曲线 Token
+  --mori-admin-motion-fast: 140ms;
+  --mori-admin-motion-base: 200ms;
+  --mori-admin-motion-slow: 260ms;
+  --mori-admin-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --mori-admin-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --mori-admin-ease-in: cubic-bezier(0.4, 0, 1, 1);
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --mori-admin-viewport-height: 100dvh;
+  }
+}
+
+html {
+  background: var(--ant-color-bg-container);
+}
+
+body {
+  color: var(--ant-color-text);
+  background: var(--ant-color-bg-layout);
+  transition:
+    color var(--mori-admin-motion-base) var(--mori-admin-ease-standard),
+    background-color var(--mori-admin-motion-base) var(--mori-admin-ease-standard);
+}
+
+.content-inner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.content-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  padding: var(--mori-admin-page-padding) var(--mori-admin-page-padding-inline);
+  overflow: auto;
+  background: var(--ant-color-bg-container);
+  transition: background-color var(--mori-admin-motion-base) var(--mori-admin-ease-standard);
+}
+
+@include layout.below-sidebar-breakpoint {
+  .content-body {
+    padding-inline: var(--mori-admin-page-padding-inline-compact);
+  }
+}
+
+.content-body--table {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.content-body-main {
+  min-width: 0;
+}
+
+.content-body--table > .content-body-main {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.card-padding {
+  padding: 16px;
+}
