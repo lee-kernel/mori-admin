@@ -9,9 +9,7 @@
       <span v-else-if="collapse" class="sidebar-logo-fallback" aria-hidden="true">
         {{ title.slice(0, 1) }}
       </span>
-      <Transition name="fade">
-        <h1 v-if="!collapse" class="sidebar-title">{{ title }}</h1>
-      </Transition>
+      <h1 class="sidebar-title" :aria-hidden="collapse">{{ title }}</h1>
     </router-link>
     <button
       class="hamburger-container"
@@ -47,6 +45,14 @@ const logo = computed(() => settingsStore.logo || '')
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/variables.module.scss' as *;
+
+$logoSize: 28px;
+$hamburgerSize: 34px;
+// 侧边栏容器左右各有 1px 边框，收起态净宽为 $collapsedSideBarWidth - 2px
+$collapsedLogoOffset: calc((#{$collapsedSideBarWidth} - 2px - #{$logoSize}) / 2);
+$collapsedHamburgerOffset: calc((#{$collapsedSideBarWidth} - 2px - #{$hamburgerSize}) / 2);
+
 .sidebar-logo-container {
   position: relative;
   display: flex;
@@ -59,22 +65,21 @@ const logo = computed(() => settingsStore.logo || '')
   transition: background-color var(--mori-admin-motion-base) var(--mori-admin-ease-standard);
 
   &.collapse {
-    justify-content: center;
-
-    .sidebar-logo {
-      margin-right: 0;
+    .sidebar-logo-link {
+      padding-right: 0;
+      padding-left: $collapsedLogoOffset;
     }
 
-    .sidebar-logo-link {
-      position: absolute;
-      inset: 0;
-      justify-content: center;
-      transition: opacity var(--mori-admin-motion-fast) var(--mori-admin-ease-standard);
+    .sidebar-title {
+      max-width: 0;
+      margin-left: 0;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(-6px);
     }
 
     .hamburger-container {
-      position: relative;
-      z-index: 1;
+      right: $collapsedHamburgerOffset;
       pointer-events: none;
       opacity: 0;
 
@@ -85,39 +90,44 @@ const logo = computed(() => settingsStore.logo || '')
     }
 
     &.is-hovering .sidebar-logo-link {
+      pointer-events: none;
       opacity: 0;
     }
-  }
-
-  &.without-logo {
-    justify-content: flex-end;
   }
 }
 
 .sidebar-logo-link {
   display: flex;
-  flex: 1;
   align-items: center;
+  width: 100%;
   min-width: 0;
   height: 100%;
-  padding: 0 8px;
+  padding: 0 42px 0 12px;
+  transition:
+    padding-left var(--mori-admin-motion-slow) var(--mori-admin-ease-standard),
+    padding-right var(--mori-admin-motion-slow) var(--mori-admin-ease-standard),
+    opacity var(--mori-admin-motion-fast) var(--mori-admin-ease-standard);
 }
 
 .hamburger-container {
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  z-index: 1;
   display: inline-flex;
-  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: $hamburgerSize;
+  height: $hamburgerSize;
   padding: 0;
-  margin-right: 4px;
   color: var(--ant-color-text-secondary);
   cursor: pointer;
   background: transparent;
   border: 0;
   border-radius: var(--ant-border-radius);
+  transform: translateY(-50%);
   transition:
+    right var(--mori-admin-motion-slow) var(--mori-admin-ease-standard),
     color var(--mori-admin-motion-fast) var(--mori-admin-ease-standard),
     background-color var(--mori-admin-motion-fast) var(--mori-admin-ease-standard),
     opacity var(--mori-admin-motion-fast) var(--mori-admin-ease-standard);
@@ -135,9 +145,8 @@ const logo = computed(() => settingsStore.logo || '')
 
 .sidebar-logo {
   flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  margin-right: 8px;
+  width: $logoSize;
+  height: $logoSize;
   vertical-align: middle;
   background: var(--ant-color-text-light-solid);
   border-radius: 4px;
@@ -145,10 +154,11 @@ const logo = computed(() => settingsStore.logo || '')
 
 .sidebar-logo-fallback {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: $logoSize;
+  height: $logoSize;
   color: var(--ant-color-primary-text);
   background: var(--ant-color-primary-bg);
   border-radius: 4px;
@@ -157,7 +167,8 @@ const logo = computed(() => settingsStore.logo || '')
 .sidebar-title {
   flex: 1;
   min-width: 0;
-  margin: 0;
+  max-width: 140px;
+  margin: 0 0 0 8px;
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -167,5 +178,12 @@ const logo = computed(() => settingsStore.logo || '')
   vertical-align: middle;
   color: var(--ant-color-text);
   white-space: nowrap;
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity var(--mori-admin-motion-fast) var(--mori-admin-ease-standard),
+    transform var(--mori-admin-motion-fast) var(--mori-admin-ease-standard),
+    max-width var(--mori-admin-motion-slow) var(--mori-admin-ease-standard),
+    margin-left var(--mori-admin-motion-slow) var(--mori-admin-ease-standard);
 }
 </style>

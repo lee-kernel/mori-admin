@@ -3,9 +3,7 @@
     <a-dropdown placement="topLeft" trigger="click">
       <button class="account-trigger" type="button" aria-label="打开账户菜单">
         <UserAvatar :size="32" />
-        <Transition name="fade">
-          <span v-if="!collapse" class="account-name">{{ displayName || '用户' }}</span>
-        </Transition>
+        <span class="account-name" :aria-hidden="collapse">{{ displayName || '用户' }}</span>
       </button>
 
       <template #overlay>
@@ -124,38 +122,54 @@ async function handleUserCommand(info: MenuInfo) {
 </script>
 
 <style scoped lang="scss">
+@use '@/styles/variables.module.scss' as *;
+
+$accountPaddingX: 10px;
+$avatarSize: 32px;
+// 侧边栏左右各 1px 边框，收起态 .account-trigger 宽为 $collapsedSideBarWidth - 2px - 2 * $accountPaddingX
+$collapsedTriggerPaddingX: calc(
+  (#{$collapsedSideBarWidth} - 2px - #{$accountPaddingX} * 2 - #{$avatarSize}) / 2
+);
+
 .sidebar-account {
   flex: 0 0 auto;
-  padding: 10px 12px;
+  padding: 10px $accountPaddingX;
   border-top: 1px solid var(--ant-color-border-secondary);
-  transition:
-    padding-inline var(--mori-admin-motion-slow) var(--mori-admin-ease-standard),
-    border-color var(--mori-admin-motion-base) var(--mori-admin-ease-standard);
+  transition: border-color var(--mori-admin-motion-base) var(--mori-admin-ease-standard);
 
   &.collapse {
-    padding-inline: 10px;
-
     .account-trigger {
-      justify-content: center;
-      width: 100%;
+      padding-right: $collapsedTriggerPaddingX;
+      padding-left: $collapsedTriggerPaddingX;
+    }
+
+    .account-name {
+      max-width: 0;
+      margin-left: 0;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(-6px);
     }
   }
 }
 
 .account-trigger {
   display: flex;
-  gap: 10px;
   align-items: center;
   width: 100%;
   min-width: 0;
-  padding: 6px;
+  padding: 6px 8px;
+  overflow: hidden;
   color: var(--ant-color-text);
   text-align: left;
   cursor: pointer;
   background: transparent;
   border: 0;
   border-radius: var(--ant-border-radius);
-  transition: background-color var(--mori-admin-motion-fast) var(--mori-admin-ease-standard);
+  transition:
+    padding-left var(--mori-admin-motion-slow) var(--mori-admin-ease-standard),
+    padding-right var(--mori-admin-motion-slow) var(--mori-admin-ease-standard),
+    background-color var(--mori-admin-motion-fast) var(--mori-admin-ease-standard);
 
   &:hover {
     background: var(--ant-color-fill-tertiary);
@@ -168,11 +182,21 @@ async function handleUserCommand(info: MenuInfo) {
 }
 
 .account-name {
+  flex: 1;
   min-width: 0;
+  max-width: 130px;
+  margin-left: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 14px;
   white-space: nowrap;
+  opacity: 1;
+  transform: translateX(0);
+  transition:
+    opacity var(--mori-admin-motion-fast) var(--mori-admin-ease-standard),
+    transform var(--mori-admin-motion-fast) var(--mori-admin-ease-standard),
+    max-width var(--mori-admin-motion-slow) var(--mori-admin-ease-standard),
+    margin-left var(--mori-admin-motion-slow) var(--mori-admin-ease-standard);
 }
 
 .account-menu {
